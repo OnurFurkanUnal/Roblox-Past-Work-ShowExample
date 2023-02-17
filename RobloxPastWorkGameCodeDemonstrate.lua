@@ -33,7 +33,7 @@ testEvent.OnServerEvent:Connect(function(player,part)
 end)
 
 wait(3)
-
+--to show leaderboard on part
 local success, errorMessage = pcall(function()
 	local data = dataStore:GetSortedAsync(false,5)
 	local winsPage = data:GetCurrentPage()
@@ -99,6 +99,7 @@ game.Players.PlayerAdded:Connect(function(player)
 	loaded[player] = true
 end)
 
+--Save data when player left game
 game.Players.PlayerRemoving:Connect(function(player)
 	if loaded[player] == nil then return end
 	local data = {}
@@ -198,7 +199,7 @@ local function SetupInventory(player)
 end
 
 game.Players.PlayerAdded:Connect(function(player)
-	--datayı playerda olustur
+	--create data on player
 	local GameData = InventoryTemplate:Clone()
 	GameData.Name = "Inventory"
 	GameData.Parent = player
